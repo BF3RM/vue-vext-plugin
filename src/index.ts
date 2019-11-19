@@ -1,4 +1,4 @@
-import Vue, { PluginObject } from 'vue';
+import { PluginObject } from 'vue';
 import { IVextInterface } from './interface';
 import { VextWebUIImpl } from './webui';
 import { VextEmulatorImpl } from './emulator';
@@ -49,11 +49,5 @@ export default VextPlugin;
 declare module 'vue/types/vue' {
     interface Vue {
         readonly $vext: IVextInterface;
-    }
-}
-
-declare module 'vue/types/options' {
-    interface ComponentOptions<V extends Vue> {
-        vext?: VextPluginOptions
     }
 }
