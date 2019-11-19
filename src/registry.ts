@@ -3,8 +3,8 @@ export interface VextEmulatorEventHandler {
 }
 
 export class VextEmulatorRegistry {
-    private static handlers = new Map<string, VextEmulatorEventHandler[]>();
-    private static localHandlers = new Map<string, VextEmulatorEventHandler[]>();
+
+    public static readonly INSTANCE = new VextEmulatorRegistry();
 
     /**
      * Registers a new event handler for the given event
@@ -13,6 +13,31 @@ export class VextEmulatorRegistry {
      * @param thisArg   Optional reference to this
      */
     static registerEvent(event: string, handler: VextEmulatorEventHandler, thisArg?: any): VextEmulatorRegistry {
+        return this.INSTANCE.registerEvent(event, handler, thisArg);
+    }
+
+    /**
+     * Registers a new local event handler for the given local event
+     * @param event     The local event name
+     * @param handler   The local event handler
+     * @param thisArg   Optional reference to this
+     */
+    static registerLocalEvent(event: string, handler: VextEmulatorEventHandler, thisArg?: any): VextEmulatorRegistry {
+        return this.INSTANCE.registerLocalEvent(event, handler, thisArg);
+    }
+
+    private handlers = new Map<string, VextEmulatorEventHandler[]>();
+    private localHandlers = new Map<string, VextEmulatorEventHandler[]>();
+
+    private constructor() {}
+
+    /**
+     * Registers a new event handler for the given event
+     * @param event     The event name
+     * @param handler   The event handler
+     * @param thisArg   Optional reference to this
+     */
+    public registerEvent(event: string, handler: VextEmulatorEventHandler, thisArg?: any): VextEmulatorRegistry {
         if (!this.handlers.has(event)) {
             this.handlers.set(event, []);
         }
@@ -28,7 +53,7 @@ export class VextEmulatorRegistry {
      * @param handler   The local event handler
      * @param thisArg   Optional reference to this
      */
-    static registerLocalEvent(event: string, handler: VextEmulatorEventHandler, thisArg?: any): VextEmulatorRegistry {
+    public registerLocalEvent(event: string, handler: VextEmulatorEventHandler, thisArg?: any): VextEmulatorRegistry {
         if (!this.localHandlers.has(event)) {
             this.localHandlers.set(event, []);
         }
@@ -39,12 +64,12 @@ export class VextEmulatorRegistry {
     }
 
     /** @internal */
-    static getEventHandlers(event: string): ReadonlyArray<VextEmulatorEventHandler> {
+    public getEventHandlers(event: string): ReadonlyArray<VextEmulatorEventHandler> {
         return this.handlers.get(event) || [];
     }
 
     /** @internal */
-    static getLocalEventHandlers(event: string): ReadonlyArray<VextEmulatorEventHandler> {
+    public getLocalEventHandlers(event: string): ReadonlyArray<VextEmulatorEventHandler> {
         return this.localHandlers.get(event) || [];
     }
 }

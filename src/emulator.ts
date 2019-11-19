@@ -43,14 +43,14 @@ export class VextEmulatorImpl implements IVextInterface {
     }
 
     DispatchEvent(event: string): boolean {
-        VextEmulatorRegistry
+        VextEmulatorRegistry.INSTANCE
             .getEventHandlers(event)
             .forEach(handler => handler());
         return true;
     }
 
     DispatchEventLocal(event: string, arg?: any): boolean {
-        VextEmulatorRegistry
+        VextEmulatorRegistry.INSTANCE
             .getLocalEventHandlers(event)
             .forEach(handler => handler(arg));
         return true;
