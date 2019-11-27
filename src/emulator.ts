@@ -45,14 +45,18 @@ export class VextEmulatorImpl implements IVextInterface {
     DispatchEvent(event: string): boolean {
         VextEmulatorRegistry.INSTANCE
             .getEventHandlers(event)
-            .forEach(handler => handler());
+            .forEach(handler => {
+                requestAnimationFrame(() => handler())
+            });
         return true;
     }
 
     DispatchEventLocal(event: string, arg?: any): boolean {
         VextEmulatorRegistry.INSTANCE
             .getLocalEventHandlers(event)
-            .forEach(handler => handler(arg));
+            .forEach(handler => {
+                requestAnimationFrame(() => handler(arg))
+            });
         return true;
     }
 }
