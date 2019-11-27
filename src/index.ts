@@ -21,7 +21,7 @@ export interface VextPluginOptions {
 }
 
 const defaultOptions: VextPluginOptions = {
-    useEmulator: !WebUI
+    useEmulator: () => !WebUI
 };
 
 const VextPlugin: PluginObject<VextPluginOptions> = {
