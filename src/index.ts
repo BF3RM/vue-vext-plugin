@@ -1,4 +1,4 @@
-import { PluginObject } from 'vue';
+import { App } from 'vue';
 import { IVextInterface } from './interface';
 import { VextWebUIImpl } from './webui';
 import { VextEmulatorImpl } from './emulator';
@@ -9,45 +9,43 @@ export { VextEmulatorImpl } from './emulator';
 export { VextEmulatorRegistry, VextEmulatorEventHandler } from './registry';
 
 export interface VextPluginOptions {
-    /**
-     * Overrides the default emulator check
-     */
-    useEmulator?: boolean | (() => boolean );
+	/**
+	 * Overrides the default emulator check
+	 */
+	useEmulator?: boolean | (() => boolean);
 
-    /**
-     * Overrides the default interface implementation
-     */
-    interface?: IVextInterface;
+	/**
+	 * Overrides the default interface implementation
+	 */
+	interface?: IVextInterface;
 }
 
 const defaultOptions: VextPluginOptions = {
-    useEmulator: () => !window.hasOwnProperty('WebUI')
+	useEmulator: () => !window.hasOwnProperty('WebUI'),
 };
 
-const VextPlugin: PluginObject<VextPluginOptions> = {
-    install(Vue, options = {}) {
-        const config = Object.assign(defaultOptions, options);
+const VextPlugin = {
+	install(app: App, options = {}) {
+		const config = Object.assign(defaultOptions, options);
 
-        if (config.interface) {
-            Vue.prototype.$vext = config.interface;
-            return;
-        }
+		if (config.interface) {
+			app.config.globalProperties.$vext = config.interface;
+			return;
+		}
 
-        const useEmulator = typeof config.useEmulator === 'function' ? config.useEmulator() : config.useEmulator;
+		const useEmulator =
+			typeof config.useEmulator === 'function'
+				? config.useEmulator()
+				: config.useEmulator;
 
-        if (useEmulator) {
-            Vue.prototype.$vext = new VextEmulatorImpl();
-            return;
-        }
+		if (useEmulator) {
+			app.config.globalProperties.$vext = new VextEmulatorImpl();
 
-        Vue.prototype.$vext = new VextWebUIImpl();
-    }
+			return;
+		}
+
+		app.config.globalProperties.$vext = new VextWebUIImpl();
+	},
 };
 
 export default VextPlugin;
-
-declare module 'vue/types/vue' {
-    interface Vue {
-        readonly $vext: IVextInterface;
-    }
-}
