@@ -1,36 +1,36 @@
 {
-  "name": "vue-vext-plugin",
-  "version": "0.1.2",
-  "description": "A vue plugin that adds a simple vext interface to communicate with Venice Unleashed",
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
-  "files": [
-    "dist"
-  ],
-  "scripts": {
-    "build": "tsc",
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/paulhobbel/vue-vext-plugin.git"
-  },
-  "keywords": [
-    "venice-unleashed",
-    "vext",
-    "vue",
-    "plugin"
-  ],
-  "author": "Paul Hobbel <contact@paulhobbel.me>",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/paulhobbel/vue-vext-plugin/issues"
-  },
-  "homepage": "https://github.com/paulhobbel/vue-vext-plugin#readme",
-  "devDependencies": {
-    "@babel/types": "^7.16.7",
-    "typescript": "^4.5.4",
-    "vue": "^3.2.26"
-  },
-  "dependencies": {}
+	"name": "vue-vext-plugin",
+	"version": "0.1.3",
+	"description": "A vue plugin that adds a simple vext interface to communicate with Venice Unleashed",
+	"main": "dist/index.js",
+	"types": "dist/index.d.ts",
+	"files": [
+		"dist"
+	],
+	"scripts": {
+		"build": "tsc",
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/paulhobbel/vue-vext-plugin.git"
+	},
+	"keywords": [
+		"venice-unleashed",
+		"vext",
+		"vue",
+		"plugin"
+	],
+	"author": "Paul Hobbel <contact@paulhobbel.me>",
+	"license": "MIT",
+	"bugs": {
+		"url": "https://github.com/paulhobbel/vue-vext-plugin/issues"
+	},
+	"homepage": "https://github.com/paulhobbel/vue-vext-plugin#readme",
+	"devDependencies": {
+		"@babel/types": "^7.16.7",
+		"typescript": "^4.5.4",
+		"vue": "^3.2.26"
+	},
+	"dependencies": {}
 }
