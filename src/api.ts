@@ -1,4 +1,4 @@
-export interface IVextInterface {
+export interface VextAPI {
     /**
      * Shows the WebUI
      */

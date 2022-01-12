@@ -1,6 +1,6 @@
-import { IVextInterface } from './interface';
+import { VextAPI } from './api';
 
-export class VextWebUIImpl implements IVextInterface {
+export class VextWebUIImpl implements VextAPI {
     Show(): boolean {
         return WebUI.Call('Show');
     }
@@ -41,11 +41,19 @@ export class VextWebUIImpl implements IVextInterface {
         return WebUI.Call('ResetMouse');
     }
 
-    DispatchEvent(event: string): boolean {
-        return WebUI.Call('DispatchEvent', event);
+    DispatchEvent(event: string, payload?: any): boolean {
+        if (typeof payload === 'object') {
+            payload = JSON.stringify(payload);
+        }
+
+        return WebUI.Call('DispatchEvent', event, payload);
     }
 
     DispatchEventLocal(event: string, payload?: any): boolean {
+        if (typeof payload === 'object') {
+            payload = JSON.stringify(payload);
+        }
+
         return WebUI.Call('DispatchEventLocal', event, payload);
     }
 }

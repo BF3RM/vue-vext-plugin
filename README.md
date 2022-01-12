@@ -1,6 +1,8 @@
 # vue-vext-plugin
 A vue plugin that adds a simple vext interface to communicate with Venice Unleashed.
 
+> Version 2+ only work with Vue 3.0. For the Vue 2.0 implemetation use 1.x of the plugin.
+
 ## Installation
 With npm
 ```
@@ -19,22 +21,44 @@ This vue plugin adds a typesafe interface to Vue's instance that can be accessed
 This is just a regular Vue plugin and can be registered like other Vue plugins.
 ```ts
 // main.ts
-import Vue from 'vue';
+import { createApp } from 'vue';
 import VextPlugin from 'vue-vext-plugin';
+import App from './App.vue';
 
-Vue.use(VextPlugin);
+const app = createApp(App);
+
+app.use(VextPlugin);
+
+app.mount('#app');
 ```
 
 ### Example
 After the plugin has been registered in can be accessed from the Vue prototype
 ```ts
-...
-@Component
-export default SomeComponent extends Vue {
-    public someFunction() {
-        this.$vext.DispatchEventLocal('MyModule:MyEvent', { some: "payload" });
+import { defineComponent } from 'vue';
+
+export default defineComponent({
+    methods: {
+        someFunction() {
+            this.$vext.DispatchEventLocal('MyModule:MyEvent', { some: "payload" });
+        }
     }
-}
+})
+```
+There's also support for Vue 3.0's composition api
+```ts
+import { defineComponent } from 'vue';
+import { useVext } from 'vue-vext-plugin';
+
+export default defineComponent({
+    setup() {
+        const vext = useVext();
+
+        return {
+            someFunction: () => vext.DispatchEventLocal('MyModule:MyEvent', { some: "payload" });
+        };
+    }
+})
 ```
 
 ### Development Tools

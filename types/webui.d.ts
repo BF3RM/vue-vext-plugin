@@ -52,8 +52,9 @@ declare namespace WebUI {
     /**
      * Dispatches an event
      * @param event Event to dispatch
+     * @param args  Optional event arguments
      */
-    function Call(type: 'DispatchEvent', event: any): boolean;
+    function Call(type: 'DispatchEvent', event: any, ...args: any[]): boolean;
 
     /**
      * Dispatches an local event

@@ -1,7 +1,7 @@
-import { IVextInterface } from './interface';
+import { VextAPI } from './api';
 import { VextEmulatorRegistry } from './registry';
 
-export class VextEmulatorImpl implements IVextInterface {
+export class VextEmulatorImpl implements VextAPI {
     Show(): boolean {
         return false;
     }
