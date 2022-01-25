@@ -22,7 +22,7 @@ This is just a regular Vue plugin and can be registered like other Vue plugins.
 ```ts
 // main.ts
 import { createApp } from 'vue';
-import VextPlugin from 'vue-vext-plugin';
+import { VextPlugin } from 'vue-vext-plugin';
 import App from './App.vue';
 
 const app = createApp(App);

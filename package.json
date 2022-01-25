@@ -2,13 +2,14 @@
   "name": "vue-vext-plugin",
   "version": "0.2.1",
   "description": "A vue plugin that adds a simple vext interface to communicate with Venice Unleashed",
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
+  "main": "dist/cjs/index.js",
+  "module": "dist/esm/index.js",
+  "typings": "dist/index.d.ts",
   "files": [
     "dist"
   ],
   "scripts": {
-    "build": "tsc",
+    "build": "rollup -c",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -28,9 +29,15 @@
   },
   "homepage": "https://github.com/BF3RM/vue-vext-plugin#readme",
   "devDependencies": {
-    "@babel/types": "^7.16.7",
+    "@rollup/plugin-commonjs": "^21.0.1",
+    "@rollup/plugin-node-resolve": "^13.1.3",
+    "rollup": "^2.66.0",
+    "rollup-plugin-dts": "^4.1.0",
+    "rollup-plugin-typescript2": "^0.31.1",
     "typescript": "^4.5.4",
     "vue": "^3.2.26"
   },
-  "dependencies": {}
+  "peerDependencies": {
+    "vue": "^3.2.0"
+  }
 }

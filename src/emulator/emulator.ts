@@ -1,4 +1,4 @@
-import { VextAPI } from './api';
+import { VextAPI } from '../api';
 import { VextEmulatorRegistry } from './registry';
 
 export class VextEmulatorImpl implements VextAPI {

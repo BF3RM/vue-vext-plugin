@@ -1,9 +1,9 @@
 {
   "compilerOptions": {
     /* Basic Options */
-    "target": "esnext",
-    "module": "commonjs",     /* Specify library files to be included in the compilation. */
-    "declaration": true,
+    "target": "es2018",
+    "module": "esnext",     /* Specify library files to be included in the compilation. */
+    "declaration": false,
     "outDir": "./dist",
     "strict": true,
 
