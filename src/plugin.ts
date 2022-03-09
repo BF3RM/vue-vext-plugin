@@ -3,6 +3,7 @@ import { VextAPI } from "./api";
 import { VextWebUIImpl } from "./webui";
 import { VextEmulatorImpl } from "./emulator";
 import { injectionSymbol } from './composition';
+import { isVextEnvironment } from "./utils";
 
 export interface VextPluginOptions {
     /**
@@ -17,7 +18,7 @@ export interface VextPluginOptions {
 }
 
 const defaultOptions: VextPluginOptions = {
-    useEmulator: () => !Object.prototype.hasOwnProperty.call(window, 'WebUI'),
+    useEmulator: () => !isVextEnvironment(),
 };
 
 export const VextPlugin = {
