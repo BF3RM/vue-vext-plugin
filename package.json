@@ -1,6 +1,6 @@
 {
   "name": "vue-vext-plugin",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "description": "A vue plugin that adds a simple vext interface to communicate with Venice Unleashed",
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
