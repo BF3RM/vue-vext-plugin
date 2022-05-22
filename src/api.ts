@@ -49,7 +49,7 @@ export interface VextAPI {
      */
     ResetMouse(): boolean;
 
-    DispatchEvent(event: string): boolean;
+    DispatchEvent(event: string, payload?: any): boolean;
 
     /**
      * Dispatches an local event

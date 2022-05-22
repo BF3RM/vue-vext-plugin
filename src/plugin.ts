@@ -1,9 +1,8 @@
 import { App } from "vue";
 import { VextAPI } from "./api";
-import { VextWebUIImpl } from "./webui";
-import { VextEmulatorImpl } from "./emulator";
 import { injectionSymbol } from './composition';
 import { isVextEnvironment } from "./utils";
+import { VextAPIDelegator } from "./delegator";
 
 export interface VextPluginOptions {
     /**
@@ -28,16 +27,7 @@ export const VextPlugin = {
         let api = config.api;
 
         if (!api) {
-            const useEmulator =
-                typeof config.useEmulator === 'function'
-                    ? config.useEmulator()
-                    : config.useEmulator;
-
-            if (useEmulator) {
-                api = new VextEmulatorImpl();
-            } else {
-                api = new VextWebUIImpl();
-            }
+            api = new VextAPIDelegator(config.useEmulator)
         }
 
         app.config.globalProperties.$vext = api;

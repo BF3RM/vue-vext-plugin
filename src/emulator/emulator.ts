@@ -42,11 +42,11 @@ export class VextEmulatorImpl implements VextAPI {
         return false;
     }
 
-    DispatchEvent(event: string): boolean {
+    DispatchEvent(event: string, arg?: any): boolean {
         VextEmulatorRegistry.INSTANCE
             .getEventHandlers(event)
             .forEach(handler => {
-                requestAnimationFrame(() => handler())
+                requestAnimationFrame(() => handler(arg))
             });
         return true;
     }
